@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+	<meta charset="UTF-8"/>
+	<meta name="description" content="this is a basic todo tool"/>
+	<meta name="keywords" content="todo list, organization"/>
+	<meta name="robots"  content="index,follow"/> 
+
+	<base href="http://localhost/html/"/>
+
+	<title>ToDo List</title>
+
+<script type="text/javascript">
+function updateList(){
+	var List = document.getElementById("List");
+	var val = document.getElementById("toDoElement").value;
+	var newElement = document.createElement("li");
+	var textnode = document.createTextNode(val);
+
+	newElement.appendChild(textnode);
+	newElement.addEventListener("click", function(ev) {
+		var target = ev.target;
+    	if ( target.tagName === "LI" ) {
+    		target.parentNode.removeChild(target);
+    	}
+    	ev.preventDefault();
+	}, false);
+	
+	List.appendChild(newElement);	
+}
+</script>
+
+<style type="text/css">
+	* { 
+    	margin: 0;
+    	padding: 0;
+ 	}
+ 	body {
+ 		padding: 10em;
+    	font-size: 15px;
+    	font-family: helvetica, arial, sans-serif;
+ 	}
+ 	#Title {
+ 		width: 350px;
+ 		text-align: center;
+ 	}
+ 	form {
+    	width: 350px;
+    	background: #333;
+    	color: #fff;
+    	border-radius: 5px;
+    	padding: 5px 10px;
+  	}
+  	#toDoElement {
+  		width: 280px;
+  	}
+  	#addElement {
+
+  	}
+  	#List {
+    	width: 280px;
+    	margin: 10px solid;
+    	margin: 10px 10px;
+  	}
+  	#List li {
+    	border-radius: 2px;
+    	list-style: none;
+    	background: #eee;
+    	padding: 5px 10px;
+    	margin-bottom: 5px;
+    	position: relative;
+  	}
+  	#List li:nth-child(2n){
+    	background: #ccc;
+  	}
+</style>
+
+</head>
+
+<body>
+
+	<h1 id="Title">ToDo List</h1>
+
+	<form name="myForm" method="post">
+		<input type="text" name="toDoElement" id="toDoElement" autofocus>
+			<button name="addElement" onclick="updateList()" type="button">Add to List</button>
+	</form>
+
+	<ul id="List">
+	</ul>
+
+
+
+</body>
+
+</html>
